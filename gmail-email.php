@@ -8,7 +8,7 @@ $bcc = $data['bcc'] ?? '';
 $subject = $data['subject'] ?? '';
 $body = $data['body'] ?? '';
 
-$url = 'https://mail.google.com/mail/?view=cm&fs=1';
+$url = 'intent://compose?';
 
 $params = [];
 
