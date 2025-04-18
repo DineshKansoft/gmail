@@ -8,17 +8,19 @@ $bcc = $data['bcc'] ?? '';
 $subject = $data['subject'] ?? '';
 $body = $data['body'] ?? '';
 
-$url = 'intent://compose?';
-
-$params = [];
-
-if (!empty($to))      $params[] = "to=" . urlencode($to);
+// Only add these if they are not empty
 if (!empty($cc))      $params[] = "cc=" . urlencode($cc);
 if (!empty($bcc))     $params[] = "bcc=" . urlencode($bcc);
-if (!empty($subject)) $params[] = "su=" . urlencode($subject);
+if (!empty($subject)) $params[] = "subject=" . urlencode($subject);
 if (!empty($body))    $params[] = "body=" . urlencode($body);
 
-$gmailUrl = $url . "&" . implode("&", $params);
+// Start with mailto: and add main recipient if available
+$mailto = 'mailto:' . urlencode($to);
+
+// If there are any parameters, append them
+if (!empty($params)) {
+    $mailto .= '?' . implode('&', $params);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,11 +28,11 @@ $gmailUrl = $url . "&" . implode("&", $params);
     <title>Opening Gmail...</title>
 </head>
 <body>
-<a id="gmailLink" href="<?= $gmailUrl ?>" style="display: none;">click here</a>
+<a id="gmailLink" href="<?= $mailto ?>" style="display: none;">click here</a>
     <script>
         setTimeout(function() {
             document.getElementById("gmailLink").click();
-        }, 100);
+        }, 200);
     </script>
 </body>
 </html>
