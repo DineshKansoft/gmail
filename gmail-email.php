@@ -9,13 +9,13 @@ $subject = $data['subject'] ?? '';
 $body = $data['body'] ?? '';
 
 // Only add these if they are not empty
-if (!empty($cc))      $params[] = "cc=" . urlencode($cc);
-if (!empty($bcc))     $params[] = "bcc=" . urlencode($bcc);
-if (!empty($subject)) $params[] = "subject=" . urlencode($subject);
-if (!empty($body))    $params[] = "body=" . urlencode($body);
+if (!empty($cc))      $params[] = "cc=" . rawurlencode($cc);
+if (!empty($bcc))     $params[] = "bcc=" . rawurlencode($bcc);
+if (!empty($subject)) $params[] = "subject=" . rawurlencode($subject);
+if (!empty($body))    $params[] = "body=" . rawurlencode($body);
 
 // Start with mailto: and add main recipient if available
-$mailto = 'mailto:' . urlencode($to);
+$mailto = 'mailto:' . rawurlencode($to);
 
 // If there are any parameters, append them
 if (!empty($params)) {
