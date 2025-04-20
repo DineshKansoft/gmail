@@ -1,6 +1,6 @@
 <?php
 // Load saved data from file
-$filePath = '/tmp/data.json';
+$filePath = 'tmp/data.json';
 $data = json_decode(file_get_contents($filePath), true);
 
 $to = $data['to'] ?? '';
