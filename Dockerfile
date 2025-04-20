@@ -5,7 +5,7 @@ FROM php:8.1-apache
 COPY . /var/www/html/
 
 # Ensure proper permissions for your data.json if it needs to be writable
-RUN chmod 666 /var/www/html/data.json
+RUN chmod 666 /var/www/html/tmp/data.json
 
 # Expose port 80 (default web port)
 EXPOSE 80
