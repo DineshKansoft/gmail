@@ -1,4 +1,5 @@
 <?php
+$filePath = '/tmp/data.json';
 // Save form data to file when submitted
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['subject'])) {
     $data = [
@@ -8,13 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['subject'])) {
         'subject' => $_GET['subject'] ?? '',
         'body' => $_GET['body'] ?? ''
     ];
-    $filePath = '/tmp/data.json';
     file_put_contents($filePath, json_encode($data));
     echo "<p>Form submitted successfully.</p>";
 }
 
 // Load last saved data to prefill form
-$lastData = file_exists($filePath) ? json_decode(file_get_contents('data.json'), true) : [];
+$lastData = file_exists($filePath) ? json_decode(file_get_contents($filePath), true) : [];
 ?>
 <!DOCTYPE html>
 <html>
