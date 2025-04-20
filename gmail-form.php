@@ -9,12 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['subject'])) {
         'body' => $_GET['body'] ?? ''
     ];
     $filePath = '/tmp/data.json';
-    file_put_contents('data.json', json_encode($data));
+    file_put_contents($filePath, json_encode($data));
     echo "<p>Form submitted successfully.</p>";
 }
 
 // Load last saved data to prefill form
-$lastData = file_exists('data.json') ? json_decode(file_get_contents('data.json'), true) : [];
+$lastData = file_exists($filePath) ? json_decode(file_get_contents('data.json'), true) : [];
 ?>
 <!DOCTYPE html>
 <html>
